@@ -1,5 +1,9 @@
 -- Example items.sql
 
+-- Create database "demo"
+CREATE DATABASE IF NOT EXISTS demo;
+USE demo;
+
 -- Create items table
 CREATE TABLE items (
   id INT AUTO_INCREMENT PRIMARY KEY,

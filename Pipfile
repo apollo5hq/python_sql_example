@@ -5,8 +5,9 @@ name = "pypi"
 
 [packages]
 mysql = "*"
-flask = "*"
 mysql-connector-python = "*"
+fastapi = "*"
+uvicorn = "*"
 
 [dev-packages]
 
