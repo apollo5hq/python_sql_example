@@ -1,36 +1,33 @@
+from fastapi import FastAPI
+import uvicorn
 import mysql.connector
-from flask import Flask, render_template, request
 
-app = Flask(__name__)
+app = FastAPI()
 
-# Connect to MySQL database
+# Connect to MySQL database 
 db = mysql.connector.connect(
   host="localhost",
   user="root",
 #   password="yourpassword",
-  database="items"
+  database="demo"
 )
 cursor = db.cursor()
 
-# Home page
-@app.route('/')
-def home():
-  return render_template('home.html')
+@app.get("/")
+async def read_root():
+    return {"message": "Hello World"}
 
-# Display items page
-@app.route('/items')
-def items():
-  cursor.execute("SELECT * FROM items")
-  items = cursor.fetchall()
-  return render_template('items.html', items=items) 
+@app.get("/items")
+async def get_items():
+    cursor.execute("SELECT * FROM items")
+    items = cursor.fetchall()
+    return {"data": items}
 
-# Add new item  
-@app.route('/new_item', methods=['POST'])
-def new_item():
-  name = request.form['name']
-  cursor.execute("INSERT INTO items (name) VALUES (%s)", (name,))
-  db.commit()
-  return redirect(url_for('items'))
-
-if __name__ == '__main__':
-  app.run(debug=True)
+@app.post("/items") 
+async def add_item(name: str):
+    cursor.execute("INSERT INTO items (name) VALUES (%s)", (name,))
+    db.commit()
+    return {"message": "Item added"}
+    
+if __name__ == "__main__":
+    uvicorn.run("app:app", reload=True)

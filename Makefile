@@ -1,10 +1,10 @@
 .PHONY: run reset
 
 run:
-	flask run
+	uvicorn main:app --reload
 
 reset:
-	mysql -u root -p < sql/resetdb.sql
+	mysql -u root < sql/reset.sql
 
 app: reset run
 
