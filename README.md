@@ -48,7 +48,7 @@ uvicorn app:app --reload
 
 Pull requests are welcome! Open a PR to suggest improvements or fix bugs and watch as SeniorDev provides feedback. This repo is intended to demonstrate collaborative development workflows.
 
-Want a review on your own codebase? Have a review in less than 5 minutes at [SeniorDev]() 
+Want a review on your own codebase? Have a review in less than 5 minutes at [SeniorDev](https://app.seniordev.ai). 
 
 ## License
 
