@@ -22,6 +22,12 @@ async def get_items():
     items = cursor.fetchall()
     return {"data": items}
 
+@app.get("/items/{item_id}")
+async def get_item(item_id: int):
+    cursor.execute("SELECT * FROM items WHERE id = %s", (item_id,))
+    item = cursor.fetchone()
+    return {"data": item}
+
 @app.post("/items") 
 async def add_item(name: str):
     cursor.execute("INSERT INTO items (name) VALUES (%s)", (name,))
