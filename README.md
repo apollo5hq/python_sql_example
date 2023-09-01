@@ -34,7 +34,7 @@ The feedback from SeniorDev helps improve the overall code quality and developer
 - Run the application:
 
 ```
-uvicorn app:app --reload
+make run
 ```
 
 - API endpoints:
